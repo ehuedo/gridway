@@ -1,0 +1,18 @@
+<?xml version='1.0'?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/"
+            xmlns:grid-acct="http://www.it-innovation.soton.ac.uk/2004/grid/account"
+            xmlns:grid-res="http://www.it-innovation.soton.ac.uk/2004/grid/resalloc"
+            xmlns:grid-job="http://www.it-innovation.soton.ac.uk/2004/grid/job"
+            xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+ <globalConfiguration>
+  <parameter name="attachment_encapsulation_format" value="axis.attachment.style.dime"/>
+  <requestFlow>
+  </requestFlow>
+  <responseFlow>
+  </responseFlow>
+ </globalConfiguration>
+
+ <transport name="http" pivot="java:org.apache.axis.transport.http.HTTPSender"/>
+
+</deployment>
