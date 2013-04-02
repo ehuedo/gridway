@@ -1,0 +1,58 @@
+===== WELCOME =====
+
+OGSA-BES (Open Grid Services Architecture-Basic Execution Service) 
+describes a Web services-based interface that is standardized by the OGF 
+(Open Grid Forum) and consists of a well-defined state model of 
+computational jobs. Jobs are specified using JSDL (Job Submission 
+Description Language), which is also an OGF standard.
+
+This source distribution provides an Execution Manager Middleware Access 
+Driver (EM MAD) for the OGSA-BES interface. In order to provide an 
+abstraction with the resource management middleware layer, GridWay uses 
+this MAD module to submit, control and monitor the execution of jobs 
+according to the OGSA-BES standard. It supports GridSAM and UNICORE as target 
+implementations of the OGSA-BES interface.
+
+
+===== REQUIREMENTS =====
+
+The source distribution requires on the client-side:
+
+- GridWay 5.14 (http://www.gridway.org)
+- GridSAM Schema 2.3.0 (gridsam-schema-2.3.0.jar) 
+- xmlbeans, axis, wsdl4j, log4j and xalan-j2
+
+Just for GridSAM as target OGSA-BES interface:
+
+- Access to a MyProxy server. Access data must be placed in the 
+$HOME/.myproxy file, where the first line is the hostname of the MyProxy 
+server, the second line is the username and the last line is the password.
+
+
+===== INSTALLATION =====
+
+This install procedure assumes that you have installed GridWay and you 
+have access to a GridSAM server.
+
+1) Install the required software.
+2) Change to src/em_mad/bes directory in the GridWay distribution.
+3) Change the JAVA_EXT variable, if needed, in Makefile and gw_em_mad_bes.sh.
+4) Build and install the driver executing "make; make install".
+5) Configure GridWay through the $GW_LOCATION/etc/gwd.conf file (check 
+the GridWay Configuration Guide) to use the MAD. This EM MAD is intended 
+to work with the "dummy" TM MAD. It must be configured for using a GridFTP 
+server to interface with GridSAM instances, or a GASS insecure server to 
+interface with UNICORE instances.
+Use "jsdl" as RSL generation function.
+6) Configure the crypto.properties file in $GW_LOCATION/etc/.
+7) Launch the GridWay daemon from $GW_LOCATION/bin/gwd.
+8) Test it and enjoy!
+
+This driver uses transport-level security, while message-level security is not
+supported.
+
+
+===== CREDITS =====
+
+The GridWay team.
+http://gridway.org, http://dsa-research.org.

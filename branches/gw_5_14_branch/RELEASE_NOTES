@@ -1,0 +1,56 @@
+====== Release Notes 5.14 ======
+
+GridWay 5.14 is a new stable version of the fifth series of the metascheduler.
+
+Release date: April 1st, 2013
+
+===== New EMI-ES driver (Tech Preview) =====
+
+A technology preview of a EMI-ES driver based on an ARC Client plug-in is now
+available for testing.
+
+===== Send usage statistics to (E)GSC =====
+
+GridWay now can send usage statistics to a Globus Statistics Collector.
+
+===== Other features =====
+
+Now the target implementation for BES driver is provided in the host contact,
+instead of using the -t option of the driver. Therefore, LRMS_NAME should be
+"bes-<target>-<lrms>", with target being "gridsam" or "unicore".
+
+===== Bug fixing =====
+
+The following bugs have been fixed:
+
+  * Bug #138 (http://dev.gridway.org/issues/138): Wrong exec time for jobs
+running for more than one day
+  * Bug #139 (http://dev.gridway.org/issues/139): Wrong error messages in
+CREAM driver when proxy delegation fails
+  * Bug #140 (http://dev.gridway.org/issues/140): gw_tm_mad_dummy -g does not
+stop the GASS server after shutdown
+  * Bug #143 (http://dev.gridway.org/issues/143): Poor error messages in
+gwsubmit
+  * Bug #144 (http://dev.gridway.org/issues/144): Duplicate delegations in CREAM
+driver
+  * Bug #145 (http://dev.gridway.org/issues/145): CREAM driver deletes the same
+job when poll and callback simultaneous operations
+  * Bug #149 (http://dev.gridway.org/issues/148): Code cleaning and resource
+consumption improvements in BES driver
+  * Bug #150 (http://dev.gridway.org/issues/150): BES driver does not recover
+UNICORE jobs
+  * Bug #151 (http://dev.gridway.org/issues/151): CFLAGS concat in configure
+fails if previously defined
+  * Bug #153 (http://dev.gridway.org/issues/153): Check command help
+  * Bug #154 (http://dev.gridway.org/issues/154): Executable stderr not shown in
+wrapper stderr
+  * Bug #155 (http://dev.gridway.org/issues/155): localstatedir should be
+/var/lib/gridway
+  * Bug #156 (http://dev.gridway.org/issues/156): Buffer overflow in submit due
+to snprintf_chk
+  * Bug #157 (http://dev.gridway.org/issues/157): ld fails with -as-needed flag
+and Globus libraries
+  * Bug #158 (http://dev.gridway.org/issues/158): Buffer overflow in
+gw_acct_join_search_by_host_and_user
+  * Bug #159 (http://dev.gridway.org/issues/159): BDII IM MAD does not work
+without -q option

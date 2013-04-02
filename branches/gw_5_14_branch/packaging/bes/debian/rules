@@ -1,0 +1,105 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+INSTALLDIR = $(CURDIR)/debian/gridway-bes
+
+_version = 5.14.0
+_prefix = /usr
+_bindir = $(_prefix)/bin
+_sbindir = $(_prefix)/sbin
+_libdir = $(_prefix)/lib
+_datadir = $(_prefix)/share
+_mandir = $(_datadir)/man
+_docdir = $(_datadir)/doc/gridway-$(_version)
+
+GW_LOCATION := $(INSTALLDIR)/usr
+
+configure: configure-stamp
+
+configure-stamp:
+	# cp -p gridway-$(_version)/packaging/bes/debian/README gridway-$(_version)/README
+	# cp -p gridway-$(_version)/packaging/bes/debian/LICENSE.ThirdParty gridway-$(_version)/src/em_mad/bes/
+	## BUILD and RUNTIME Dependencies at src/em_mad/bes/lib ##
+	# wget http://sourceforge.net/projects/gridsam/files/gridsam/2.3.0/gridsam.war/download
+	# jar xvf gridsam.war WEB-INF/lib/gridsam-schema-2.3.0.jar
+
+build: build-arch build-indep
+
+build-arch: build-stamp
+
+build-indep: build-stamp
+
+build-stamp: configure-stamp
+	dh_testdir
+
+	$(MAKE) -C src/em_mad/bes/
+	$(MAKE) -C src/tm_mad/dummy/
+
+clean:	
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	if [ -r Makefile ] ; then $(MAKE) -C src/em_mad/bes/ clean ; fi
+	if [ -r Makefile ] ; then $(MAKE) -C src/tm_mad/dummy/ clean ; fi
+	dh_clean
+
+
+install: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+	export GW_LOCATION=$(GW_LOCATION)
+	mkdir -p $(INSTALLDIR)/usr/bin
+	mkdir -p $(INSTALLDIR)/usr/lib
+	mkdir -p $(INSTALLDIR)/usr/lib/java-ext/gridway-bes/lib
+	mkdir -p $(INSTALLDIR)/usr/lib/java-ext/gridway-bes/endorsed
+	mkdir -p $(INSTALLDIR)/usr/share/doc/gridway-bes/
+	mkdir -p $(INSTALLDIR)/usr/etc
+	cp src/em_mad/bes/lib/gridsam-schema-2.3.0.jar $(INSTALLDIR)/usr/lib/java-ext/gridway-bes/lib/
+	cp /usr/share/java/xalan2.jar $(INSTALLDIR)/usr/lib/java-ext/gridway-bes/endorsed
+	cp /usr/share/java/serializer.jar $(INSTALLDIR)/usr/lib/java-ext/gridway-bes/endorsed
+	cp /usr/share/java/axis-saaj.jar $(INSTALLDIR)/usr/lib/java-ext/gridway-bes/endorsed
+	cp src/em_mad/bes/LICENSE.ThirdParty $(INSTALLDIR)/usr/share/doc/gridway-bes/
+	cp README $(INSTALLDIR)/usr/share/doc/gridway-bes/
+
+	$(MAKE) install -C src/em_mad/bes/ DESTDIR=$(INSTALLDIR)  
+	$(MAKE) install -C src/tm_mad/dummy/ DESTDIR=$(INSTALLDIR)
+
+binary: binary-arch binary-indep
+
+binary-arch: install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -a
+	dh_install -a
+	dh_installman -a
+	dh_installinit -a
+	dh_link -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_perl -a
+	dh_makeshlibs -a
+	dh_installdeb -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_installdocs -i
+	dh_installchangelogs -i
+	dh_install -i
+	dh_installman -i
+	dh_installinit -i
+	dh_link -i
+	dh_compress -i -X .tag
+	dh_fixperms -i
+	dh_perl -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+.PHONY: binary binary-arch binary-indep build build-arch build-indep clean configure install

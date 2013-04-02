@@ -1,0 +1,41 @@
+gridway-bes (5.14-0) testing; urgency=low
+
+  * Update to 5.14-0.
+
+ -- GridWay Project Leads <contact@gridway.org>  Mon, 1 Apr 2013 09:00:00 +0100
+
+gridway-bes (5.12-0) stable; urgency=low
+
+  * Update to 5.12-0.
+
+ -- GridWay Project Leads <contact@gridway.org>  Sun, 30 Sep 2012 09:00:00 +0200
+
+gridway-bes (5.12-RC1) testing; urgency=low
+
+  * Update to 5.12-RC1.
+
+ -- GridWay Project Leads <contact@gridway.org>  Fri, 31 Aug 2012 10:54:10 +0200
+
+gridway-bes (5.10-2) stable; urgency=low
+
+  * Bug fixing.
+
+ -- GridWay Project Leads <contact@gridway.org>  Thu, 17 May 2012 10:09:05 +0200
+
+gridway-bes (5.10-1) stable; urgency=low
+
+  * Fixing dependencies.
+
+ -- GridWay Project Leads <contact@gridway.org>  Mon, 09 Apr 2012 10:15:40 +0200
+
+gridway-bes (5.10-0) stable; urgency=low
+
+  * Update to 5.10-0.
+
+ -- GridWay Project Leads <contact@gridway.org>  Wed, 28 Mar 2012 18:02:20 +0200
+
+gridway-bes (5.10-RC1) testing; urgency=low
+
+  * Initial release.
+
+ -- GridWay Project Leads <contact@gridway.org>  Mon, 27 Feb 2012 09:49:48 +0100
